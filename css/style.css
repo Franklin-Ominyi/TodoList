@@ -142,14 +142,14 @@ nav .nav-brand {
 }
 
 .edit-todo .edit-text {
-  font-size: 25px;
+  font-size: 20px;
   color: grey;
   margin-right: 10px;
 }
 
 .edit-todo .edit-input {
   padding: 10px;
-  width: 100%;
+  width: 94%;
   font-size: 16px;
   border-radius: 4px;
   border: 2px solid #ddd;
@@ -161,10 +161,10 @@ nav .nav-brand {
 }
 
 .edit-todo .edit-btn {
-  padding: 12px;
+  padding: 10px;
   border: none;
   outline: none;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
   background-color: #e71639;
   border-radius: 5px;
