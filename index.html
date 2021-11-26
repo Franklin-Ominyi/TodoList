@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="shortcut icon" href="/img/favicon.jpg" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="img/favicon.jpg" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <title>Todo List | Developed by Franklin Ominyi</title>
+  </head>
+  <body>
+    <div class="app">
+      <nav>
+        <h1 class="nav-brand">Todo List</h1>
+      </nav>
+      <div class="app-content">
+        <div class="app-main">
+          <div class="add-todo-container">
+            <h2>New Todo</h2>
+            <div class="app-form">
+              <input type="text" class="add-todo" placeholder="Add a todo" />
+              <button class="add-todo-btn">Add</button>
+            </div>
+            <p class="input-error">Please fill in the input</p>
+          </div>
+
+          <div class="all-todos">
+            <div class="edit-todo flex">
+              <div class="flex" style="width: 80%; justify-content: start">
+                <div><span class="edit-text">Edit:</span></div>
+                <div style="width: 100%">
+                  <input
+                    class="edit-input"
+                    type="text"
+                    placeholder="edit todo"
+                  />
+                </div>
+              </div>
+              <button class="edit-btn">Save</button>
+            </div>
+            <div class="todo-list"></div>
+          </div>
+          <div class="error-container">
+            <p class="no-todo">Oops you haven't added any todo item</p>
+            <p class="error">
+              Oops it seems like you don't have an internet connection
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
