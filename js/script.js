@@ -29,11 +29,14 @@ const toggleIsCompleted = (item, id) => {
     data = { isCompleted: true, id };
   }
 
-  fetch("http://localhost:3000/api/v1/todos/update/iscompleted/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  })
+  fetch(
+    "https://young-gorge-82777.herokuapp.com/api/v1/todos/update/iscompleted/",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }
+  )
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -51,7 +54,7 @@ const toggleIsCompleted = (item, id) => {
 editTodoBtn.addEventListener("click", () => {
   if (editInputDOM.value !== undefined && editInputDOM.value !== "") {
     const data = { todo: editInputDOM.value, id: editNoticeId };
-    fetch("http://localhost:3000/api/v1/todos/update/todo/", {
+    fetch("https://young-gorge-82777.herokuapp.com/api/v1/todos/update/todo/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -74,7 +77,7 @@ editTodoBtn.addEventListener("click", () => {
 });
 
 const fetchAllTodo = () => {
-  fetch("http://localhost:3000/api/v1/todos")
+  fetch("https://young-gorge-82777.herokuapp.com/api/v1/todos")
     .then((response) => response.json())
     .then((res) => {
       const data = res;
@@ -139,7 +142,7 @@ addTodoBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (addTodo.value !== "" && addTodoBtn.value !== undefined) {
     const data = { todo: addTodo.value };
-    fetch("http://localhost:3000/api/v1/todos/", {
+    fetch("https://young-gorge-82777.herokuapp.com/api/v1/todos/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -165,7 +168,7 @@ addTodoBtn.addEventListener("click", (e) => {
 });
 
 const DeleteTodo = (id) => {
-  const endpoint = "http://localhost:3000/api/v1/todos/" + id;
+  const endpoint = "https://young-gorge-82777.herokuapp.com/api/v1/todos/" + id;
   fetch(endpoint, { method: "DELETE" })
     .then((res) => {
       fetchAllTodo();
