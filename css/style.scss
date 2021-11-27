@@ -176,6 +176,15 @@ nav {
   display: none;
 }
 
+.network-error {
+  font-size: 18px;
+  color: rgb(231, 22, 57);
+  font-weight: bold;
+  text-align: center;
+  margin: 15px 15px;
+  display: none;
+}
+
 .todos-loader {
   display: none;
   margin-top: 40px;

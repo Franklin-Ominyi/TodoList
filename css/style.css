@@ -199,6 +199,15 @@ nav .nav-brand {
   display: none;
 }
 
+.network-error {
+  font-size: 18px;
+  color: #e71639;
+  font-weight: bold;
+  text-align: center;
+  margin: 15px 15px;
+  display: none;
+}
+
 .todos-loader {
   display: none;
   margin-top: 40px;

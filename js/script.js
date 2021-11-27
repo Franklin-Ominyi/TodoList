@@ -5,6 +5,7 @@ const editInputDOM = document.querySelector(".edit-input");
 const editTodoDOM = document.querySelector(".edit-todo");
 const addTodoBtn = document.querySelector(".add-todo-btn");
 const errorDOM = document.querySelector(".error");
+const networkError = document.querySelector(".network-error");
 const inputErrorDOM = document.querySelector(".input-error");
 const editTodoBtn = document.querySelector(".edit-btn");
 const todoLoader = document.querySelector(".todos-loader");
@@ -57,6 +58,12 @@ const toggleIsCompleted = (item, id) => {
     })
     .catch((err) => {
       otherLoader.style.display = "none";
+      if (err.message === "Failed to fetch") {
+        networkError.style.display = "block";
+        setTimeout(() => {
+          networkError.style.display = "none";
+        }, 3000);
+      }
       console.log(err);
     });
 };
@@ -83,6 +90,12 @@ editTodoBtn.addEventListener("click", () => {
       .catch((err) => {
         console.log(err);
         otherLoader.style.display = "none";
+        if (err.message === "Failed to fetch") {
+          networkError.style.display = "block";
+          setTimeout(() => {
+            networkError.style.display = "none";
+          }, 3000);
+        }
       });
   } else {
     editTodoDOM.style.display = "none";
@@ -178,7 +191,15 @@ addTodoBtn.addEventListener("click", (e) => {
         fetchAllTodo();
       })
       .catch((err) => {
-        console.log(err);
+        otherLoader.style.display = "none";
+
+        if (err.message === "Failed to fetch") {
+          networkError.style.display = "block";
+          setTimeout(() => {
+            networkError.style.display = "none";
+          }, 3000);
+        }
+        console.log(err.message);
       });
   } else {
     otherLoader.style.display = "none";
@@ -199,6 +220,12 @@ const DeleteTodo = (id) => {
     })
     .catch((err) => {
       otherLoader.style.display = "none";
+      if (err.message === "Failed to fetch") {
+        networkError.style.display = "block";
+        setTimeout(() => {
+          networkError.style.display = "none";
+        }, 3000);
+      }
       console.log(err);
     });
 };
