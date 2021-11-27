@@ -108,7 +108,7 @@ nav .nav-brand {
 }
 
 .todo-completed {
-  border: 2px solid blue;
+  border: 2px solid #5f55eb;
 }
 
 .flex {
@@ -197,6 +197,20 @@ nav .nav-brand {
   text-align: center;
   margin: 15px 15px;
   display: none;
+}
+
+.todos-loader {
+  display: none;
+  margin-top: 40px;
+  text-align: center;
+  color: #5f55eb;
+}
+
+.other-loader {
+  display: none;
+  margin: 20px;
+  text-align: center;
+  color: #5f55eb;
 }
 
 .input-error {

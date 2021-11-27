@@ -7,6 +7,8 @@ const addTodoBtn = document.querySelector(".add-todo-btn");
 const errorDOM = document.querySelector(".error");
 const inputErrorDOM = document.querySelector(".input-error");
 const editTodoBtn = document.querySelector(".edit-btn");
+const todoLoader = document.querySelector(".todos-loader");
+const otherLoader = document.querySelector(".other-loader");
 
 let fetchData;
 let editNoticeId;
@@ -21,7 +23,13 @@ const timeFormat = (hour, minutes) => {
   return `${addZero(hourDOM)}:${addZero(minutes)} ${amPm} `;
 };
 
+window.addEventListener("load", () => {
+  todoLoader.style.display = "block";
+  fetchAllTodo();
+});
+
 const toggleIsCompleted = (item, id) => {
+  otherLoader.style.display = "block";
   let data;
   if (item === "true") {
     data = { isCompleted: false, id };
@@ -43,16 +51,19 @@ const toggleIsCompleted = (item, id) => {
       }
     })
     .then((res) => {
+      otherLoader.style.display = "none";
       addTodo.value = "";
       fetchAllTodo();
     })
     .catch((err) => {
+      otherLoader.style.display = "none";
       console.log(err);
     });
 };
 
 editTodoBtn.addEventListener("click", () => {
   if (editInputDOM.value !== undefined && editInputDOM.value !== "") {
+    otherLoader.style.display = "block";
     const data = { todo: editInputDOM.value, id: editNoticeId };
     fetch("https://young-gorge-82777.herokuapp.com/api/v1/todos/update/todo/", {
       method: "POST",
@@ -65,11 +76,13 @@ editTodoBtn.addEventListener("click", () => {
         }
       })
       .then((res) => {
+        otherLoader.style.display = "none";
         editTodoDOM.style.display = "none";
         fetchAllTodo();
       })
       .catch((err) => {
         console.log(err);
+        otherLoader.style.display = "none";
       });
   } else {
     editTodoDOM.style.display = "none";
@@ -86,6 +99,7 @@ const fetchAllTodo = () => {
         noTodo.style.display = "none";
         todoDOM.style.display = "block";
         todoDOM.innerHTML = "";
+        todoLoader.style.display = "none";
 
         data.forEach((item, index) => {
           todoDOM.innerHTML += `
@@ -99,7 +113,9 @@ const fetchAllTodo = () => {
             item._id
           }')"/>
                 <div class="todo-items">
-                  <p class="todo">${item.todo}</p>
+                  <p class="todo" style="text-decoration-line:${
+                    item.isCompleted ? " line-through" : ""
+                  };">${item.todo}</p>
                   <span class="date">${timeFormat(
                     new Date(item.updatedAt).getHours(),
                     new Date(item.updatedAt).getMinutes()
@@ -117,6 +133,7 @@ const fetchAllTodo = () => {
           `;
         });
       } else {
+        todoLoader.style.display = "none";
         todoDOM.style.display = "none";
         noTodo.style.display = "block";
       }
@@ -124,8 +141,10 @@ const fetchAllTodo = () => {
     .catch((err) => {
       if (err.message === "Failed to fetch") {
         errorDOM.style.display = "block";
+        todoLoader.style.display = "none";
       } else {
         errorDOM.style.display = "none";
+        todoLoader.style.display = "none";
       }
       console.log(err);
     });
@@ -141,6 +160,7 @@ const updateTodo = (id) => {
 addTodoBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (addTodo.value !== "" && addTodoBtn.value !== undefined) {
+    otherLoader.style.display = "block";
     const data = { todo: addTodo.value };
     fetch("https://young-gorge-82777.herokuapp.com/api/v1/todos/", {
       method: "POST",
@@ -153,6 +173,7 @@ addTodoBtn.addEventListener("click", (e) => {
         }
       })
       .then((res) => {
+        otherLoader.style.display = "none";
         addTodo.value = "";
         fetchAllTodo();
       })
@@ -160,6 +181,7 @@ addTodoBtn.addEventListener("click", (e) => {
         console.log(err);
       });
   } else {
+    otherLoader.style.display = "none";
     inputErrorDOM.style.display = "block";
     setTimeout(() => {
       inputErrorDOM.style.display = "none";
@@ -168,14 +190,15 @@ addTodoBtn.addEventListener("click", (e) => {
 });
 
 const DeleteTodo = (id) => {
+  otherLoader.style.display = "block";
   const endpoint = "https://young-gorge-82777.herokuapp.com/api/v1/todos/" + id;
   fetch(endpoint, { method: "DELETE" })
     .then((res) => {
+      otherLoader.style.display = "none";
       fetchAllTodo();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      otherLoader.style.display = "none";
+      console.log(err);
+    });
 };
-
-window.addEventListener("load", () => {
-  fetchAllTodo();
-});
